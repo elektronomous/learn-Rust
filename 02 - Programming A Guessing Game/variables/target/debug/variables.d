@@ -1,0 +1,1 @@
+/home/elektronomous/Projects/learn-Rust/02\ -\ Programming\ A\ Guessing\ Game/variables/target/debug/variables: /home/elektronomous/Projects/learn-Rust/02\ -\ Programming\ A\ Guessing\ Game/variables/src/main.rs

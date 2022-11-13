@@ -1,4 +1,9 @@
-= to set up a new project, go to the projects directory that you created in.
+= When a value is immutable, once a value is bound to a name,
+  you can't change that value.
 
-    $ cargo new guessing_game
-    $ cd guessing_game
+    let x = 5;          // x == 5: immutable x's value
+
+= You can create a mutable variable by adding mut to the var-
+  iable name
+
+    let mut x = 5;      // x == 5: mutable x's value
