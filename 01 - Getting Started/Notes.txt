@@ -9,3 +9,10 @@
 = println! calls a Rust macro
   = if it called a function instead, it would be entered as println(without !).
 = using a ! means that you're calling a macro instead of a normal function.
+= Rust is an ahead-of-time compiled language, meaning you can compile a program and give the executable
+  to someone else and they can run it even without rust installed.
+= Cargo is Rust's build system and package manager.
+= Cargo handles a lot of tasks for you such as building your code, downloading the libraries your code
+  depends on, and building those libraries.
+= We call libraries that your code needs dependencies.
+= 

@@ -1,0 +1,4 @@
+= to set up a new project, go to the projects directory that you created in.
+
+    $ cargo new guessing_game
+    $ cd guessing_game
