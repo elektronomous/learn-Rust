@@ -1,0 +1,7 @@
+= installing rust on linux/macos
+
+    $ curl https://sh.rustup.rs -sSf | sh
+
+= updating rust
+    
+    $ rustup update
