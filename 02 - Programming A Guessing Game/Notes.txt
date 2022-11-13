@@ -109,3 +109,5 @@
   colon
 
         let arr = [3; 5];                   // => [3,3,3,3,3]
+
+= Rust uses snake case as the conventional style for function and variables name.
