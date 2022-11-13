@@ -7,10 +7,10 @@ fn main() {
     // shadowing
     let my_number = 10;
     println!("The value of my number: {}", my_number);
-    
+
     let my_number = 20;
     println!("The value of my number: {}", my_number);
-    
+
     let my_number = my_number + 10;
     println!("the value of my number: {}", my_number);
 
@@ -21,11 +21,11 @@ fn main() {
     let spaces = spaces.len();
     println!("the spaces: {}", spaces);
 
-    /* make the compiler panic: uncomment this out 
+    /* make the compiler panic: uncomment this out
     let overflow:i8 = 256;
     println!("the overflow: {}", overflow);
     */
-    
+
     // specify an integer
     let my_integer: u32 = 10;
 
@@ -36,4 +36,28 @@ fn main() {
 
     // specify the boolean type
     let am_i_handsome: bool = true;
+
+    // specified a tuple
+    let tup: (u32, f64, bool) = (500, 22.5, true);
+    // you can destructuring it
+    let (x, y, z) = tup;
+    // also like this
+    let five_hundred = tup.0;
+    let phi = tup.1;
+
+    // specified an array
+    let arr: [i32; 5] = [1, 2, 3, 4, 5];
+    let arr = [3; 5];
+    let days = [
+        "monday",
+        "tuesday",
+        "wednesday",
+        "thursday",
+        "friday",
+        "saturday",
+        "sunday",
+    ];
+
+    let [one, two, three, four, five] = arr;
+    println!("{}{}{}", one, two, three);
 }

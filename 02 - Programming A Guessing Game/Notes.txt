@@ -52,6 +52,7 @@
   = floating-point numbers,
   = Booleans
   = characters
+
 = An integer => a number without fractional component.
 
     .------------------------------.
@@ -85,3 +86,26 @@
 = Rust's char type is four bytes(32-bit) in size represents Unicode scalar.
 = Note that char literals are spcified with single quotes(''), as opposed to string
   literals which use double quotes("")
+= Compound types can group multiple values into one type.
+  = Rust has two primitive Compound types: tuples and arrays.
+
+= A tuple is general way of grouping together some number of other values with a
+  variety of types into one Compound types.
+
+        let tup: (i32, f64, bool) = (500, 10.55, true);
+
+= Tuples have a fixed length: once declared, they cannot grow or shrink.
+= You can also use array, but it must have the same type and its has a fixed length.
+
+        let months = [
+            "JANUARY", "FEBRUARY", "MARCH", "APRIL", "MAY", "JUNE", JULY",
+            "AGUSTUS", "SEPTEMBER", "OKTOBER", "NOVEMBER", "DESEMBER"
+        ];
+
+        let arr: [i32; 5] = [1, 2, 3, 4, 5];
+
+= After the semicolon, the number 5 indicates the element contains five elements.
+= You can create an array that contains the same value for each element using the semi-
+  colon
+
+        let arr = [3; 5];                   // => [3,3,3,3,3]
