@@ -1,9 +1,87 @@
-= When a value is immutable, once a value is bound to a name,
-  you can't change that value.
+= When a value is immutable, once a value is bound to a name, you can't
+  change that value.
 
     let x = 5;          // x == 5: immutable x's value
 
-= You can create a mutable variable by adding mut to the var-
-  iable name
+= You can create a mutable variable by adding mut to the variable name
 
     let mut x = 5;      // x == 5: mutable x's value
+
+= immutable variable and constant are different.
+  = You're not allowed to use mut with constant.
+  = You declare constants using const keyword and the type of the value
+    must be annotated.
+
+        const MAX_POINTS: u32 = 100_000;
+
+= You can declare a new variable with the same name as a previous variable 
+  and the new variable shadows the previous variables.
+
+        let my_number = 10;                 // my_number == 10
+        let my_number = 30;                 // my_number == 30
+        let my_number = my_number + 10;     // my_number == 40
+
+= When you don't specify the let keyword when you reassign(shadowing), the 
+  compiler will give you a warning
+
+        let my_number = 10;                 // my_number == 10
+        my_number = 20;                     // Error.
+
+= You can shadowing the variable to another type, for example to string:
+
+        let my_number = 10;                 // my_number == 10
+        let my_number = "Ten Thousands";    // my_number == "Ten Thousands"
+
+= When you declare a variable with mut, its type is fixed so you can't shad-
+  owing the variable to another type.
+        
+        let mut my_number = 10;             // my_number == 10
+        my_number = 20;                     // my_number == 20: OK
+        my_number = "Two Thousands";        // Error.
+
+= You can't also shadowing using mut
+
+        let my_number = 10;                 // my_number == 10
+        let mut my_number = 20;             // Error
+
+= Rust is a statically typed language, which means that it must know the types
+  of all variables at compile time
+= Scalar type represents a single value.
+= Rust has four primary scalar types:
+  = integers
+  = floating-point numbers,
+  = Booleans
+  = characters
+= An integer => a number without fractional component.
+
+    .------------------------------.
+    |  LENGTH  | SIGNED | UNSIGNED |
+    |----------|--------|----------|
+    | 8-bit    | i8     | u8       |
+    | 16-bit   | i16    | u16      |
+    | 32-bit   | i32    | u32      | 
+    | 64-bit   | i64    | u64      |
+    | 128-bit  | i128   | u128     |
+    | arch     | isize  | usize    |
+    |------------------------------|
+
+= Each signed variant can store numbers from -(2^n-1) to 2^n-1
+= isize and usize types depend on the kind of computer your program is running on.
+  64-bit if you're in 64-bit architecture and do so with 32-bit.
+
+    .-----------------------------------.
+    |  NUMBER LITERALS | Example        |
+    |------------------|----------------|
+    | Decimal          | 98_222         |
+    | Hex              | 0xff           | 
+    | Ocal             | 0x77           |
+    | Binary           | 0b1111_0000    |
+    | Byte (u8 only)   | b'A'           |
+    |-----------------------------------|
+
+= Rust floating-point numbers are numbers with decimal points.
+= Rust floating-point types are f32 and f64, which are 32 bits and 64 bits in size.
+= Rust has Booleans type which is two possible values: true and false.
+= Rust's char type is four bytes(32-bit) in size represents Unicode scalar.
+= Note that char literals are spcified with single quotes(''), as opposed to string
+  literals which use double quotes("")
