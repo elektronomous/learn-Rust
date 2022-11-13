@@ -5,3 +5,7 @@
 = updating rust
     
     $ rustup update
+
+= println! calls a Rust macro
+  = if it called a function instead, it would be entered as println(without !).
+= using a ! means that you're calling a macro instead of a normal function.
