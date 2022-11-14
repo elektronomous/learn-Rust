@@ -2,5 +2,10 @@
   "editor.defaultFormatter": "rust-lang.rust-analyzer",
   "[rust]": {
     "editor.semanticHighlighting.enabled": false
+  },
+  "rust-analyzer.updates.askBeforeDownload": false,
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   }
+
 }

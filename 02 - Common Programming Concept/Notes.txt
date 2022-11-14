@@ -143,3 +143,4 @@
   part of a function's signature.
 = When a function has parameters, you can provide it with concrete values for those para-
   meters that's called argument.
+= In function signatures, you must declare the type of each parameter.

@@ -4,6 +4,9 @@ fn main() {
     println!("Hello, world!");
     another_function();
     accept_arguments(15);
+
+    let result = sum(10, 20);
+    println!("the result: {}", result);
 }
 
 fn another_function() {
@@ -12,4 +15,8 @@ fn another_function() {
 
 fn accept_arguments(x: i32) {
     println!("the argument of x: {}", x);
+}
+
+fn sum(x: i32, y: i32) {
+    x + y;
 }
