@@ -1,0 +1,1 @@
+/home/elektronomous/Projects/learn-Rust/02\ -\ Common\ Programming\ Concept/Exercises/temperature/target/debug/temperature: /home/elektronomous/Projects/learn-Rust/02\ -\ Common\ Programming\ Concept/Exercises/temperature/src/main.rs

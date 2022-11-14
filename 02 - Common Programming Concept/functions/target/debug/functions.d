@@ -1,1 +1,1 @@
-/home/elektronomous/Projects/learn-Rust/02\ -\ Programming\ A\ Guessing\ Game/functions/target/debug/functions: /home/elektronomous/Projects/learn-Rust/02\ -\ Programming\ A\ Guessing\ Game/functions/src/main.rs
+/home/elektronomous/Projects/learn-Rust/02\ -\ Common\ Programming\ Concept/functions/target/debug/functions: /home/elektronomous/Projects/learn-Rust/02\ -\ Common\ Programming\ Concept/functions/src/main.rs

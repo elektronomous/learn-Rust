@@ -1,0 +1,1 @@
+/home/elektronomous/Projects/learn-Rust/02\ -\ Common\ Programming\ Concept/loop_example/target/debug/loop_example: /home/elektronomous/Projects/learn-Rust/02\ -\ Common\ Programming\ Concept/loop_example/src/main.rs

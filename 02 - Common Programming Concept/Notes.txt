@@ -15,12 +15,12 @@
   = You declare constants using const keyword and the type of the value
     must be annotated.
 
-        const MAX_POINTS: u32 = 100_000;
+        const MAX POINTS: u32 = 100 000;
 
 = You can declare a new variable with the same name as a previous variable 
   and the new variable shadows the previous variables.
 
-        let my_number = 10;                 // my_number == 10
+        let my number = 10;                 // my_number == 10
         let my_number = 30;                 // my_number == 30
         let my_number = my_number + 10;     // my_number == 40
 
@@ -40,12 +40,12 @@
         
         let mut my_number = 10;             // my_number == 10
         my_number = 20;                     // my_number == 20: OK
-        my_number = "Two Thousands";        // Error.
+        my_number = "Two Thousands";        // ERROR.
 
 = You can't also shadowing using mut
 
         let my_number = 10;                 // my_number == 10
-        let mut my_number = 20;             // Error
+        let mut my_number = 20;             // ERROR
 
 = Rust is a statically typed language, which means that it must know the types
   of all variables at compile time
@@ -79,10 +79,10 @@
     .-----------------------------------.
     |  NUMBER LITERALS | Example        |
     |------------------|----------------|
-    | Decimal          | 98_222         |
+    | Decimal          | 98 222         |
     | Hex              | 0xff           | 
     | Ocal             | 0x77           |
-    | Binary           | 0b1111_0000    |
+    | Binary           | 0b1111 0000    |
     | Byte (u8 only)   | b'A'           |
     |-----------------------------------|
 
@@ -144,3 +144,119 @@
 = When a function has parameters, you can provide it with concrete values for those para-
   meters that's called argument.
 = In function signatures, you must declare the type of each parameter.
+= When function return a value, you must declare their type after an arrow ->
+= You can return a value without keyword return by create an expression.
+  and the type of the function return value must be declare
+
+        fn some main() -> i32 {
+          5                       // => 5: return 5
+        }
+
+        fn some main(x: i32, y:u32) -> i32 {
+          x+y                     // => x+y: return the result of x+y
+        }
+
+.--------------------------.
+| STATEMENT AND EXPRESSION |
+|--------------------------|
+
+= Statements are instructions that perform some action and do not return a value.
+= Expressions evaluate to a resulting value.
+
+
+        fn some main() {
+          let y = 10;
+        }
+
+= Function definitions, declare a variable and other action, these don't return a value.
+= Calling a function/macro is an expression.
+= The block that we use to create a new scope {}, is an expression:
+
+        fn main() {
+          let x = 5;
+
+          let y = {
+            let x = 3;
+            x + 1
+          };
+
+          println!("The value of y is: {}", y);
+        }
+
+= Note the line (x+1), expression do not include ending semicolon.
+  = If you add a semicolon to the end of an expression, you turn it into a statement.
+    Which will not return a value.
+
+.--------------.
+| IF STATEMENT |
+|--------------|
+
+= An if expression allows you to branch your code depending on conditions.
+
+      if condition that result in bool {
+
+        // block of code that you wanna run if true;
+
+      } else {
+        
+        // block of code that you wanna run if false;
+
+      }
+
+= Condition here must be a Booleans.
+
+      if number {
+        // block of code
+      }
+
+  = This will produce an error, because it condition evaluate is integer.
+
+= Rust will not automatically try to convert non-Boolean types to Boolean(unlike JavaScript
+  or Ruby).
+= You can use if combine with an expression with let:
+
+      let am_i_handsome = true;
+      let myself = if am_i_handsome {
+        "100%"
+      } else {
+        "90%"
+      };
+
+= When using if condition expression like this make sure the both block of code which the true
+  block and the false block, return the same type
+
+      let myself = if am_i_handsome {
+        "100%"
+      } else {
+        50          // ERROR
+      }
+
+.----------------.
+| LOOP STATEMENT |
+|----------------|
+
+= A loop runs throuh the code inside the loop body to the end and then starts immediately back
+  at the beginning.
+
+      fn main() {
+        loop {
+          println!("again!");     // => "again!": run until forever
+        }
+      }
+
+= You can add the value you want to returned after the break expression you use to stop the loop:
+
+      fn main() {
+        let mut n_factorial = 5;
+        let mut result = 1;
+
+        let factorial_result = loop {
+          result *= n_factorial;
+
+          n_factorial -= 1;
+
+          if n_factorial != 0 {
+            break result;           // => result
+          }
+        }
+      }
