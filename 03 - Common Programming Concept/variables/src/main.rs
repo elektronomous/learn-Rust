@@ -1,4 +1,6 @@
 fn main() {
+    let _s = "Hello";
+
     let mut x = 5;
     println!("The value of x is: {}", x);
     x = 6;
@@ -40,15 +42,15 @@ fn main() {
     // specified a tuple
     let tup: (u32, f64, bool) = (500, 22.5, true);
     // you can destructuring it
-    let (x, y, z) = tup;
+    let (_x, _y, _z) = tup;
     // also like this
     let five_hundred = tup.0;
-    let phi = tup.1;
+    let _phi = tup.1;
 
     // specified an array
-    let arr: [i32; 5] = [1, 2, 3, 4, 5];
-    let arr = [3; 5];
-    let days = [
+    let _arr: [i32; 5] = [1, 2, 3, 4, 5];
+    let _arr = [3; 5];
+    let _days = [
         "monday",
         "tuesday",
         "wednesday",
@@ -58,6 +60,6 @@ fn main() {
         "sunday",
     ];
 
-    let [one, two, three, four, five] = arr;
-    println!("{}{}{}", one, two, three);
+    let [_one, _two, _three, _four, _five] = _arr;
+    println!("{}{}{}", _one, _two, _three);
 }
