@@ -10,11 +10,11 @@
     = When the owner goes out of scope, the value will be dropped.
 = A scope is the range within the program for which an item is valid.
 
-      {                           // s is not valid here; it's not yet declared
-        let s = "hello";          // s is valid from this point forward.
+      {                               // s is not valid here; it's not yet declared
+          let s = "hello";            // s is valid from this point forward.
 
-        // do stuff with s
-      }                           // this scope is now over, and s is no longer valid.
+          // do stuff with s
+      }                              // this scope is now over, and s is no longer valid.
 
 
 .-------------.
@@ -40,3 +40,172 @@
 = Why can String be mutated but literals cannot ?
   = In case of a string literal, we know the contents at compile time, so the text is hardcoded
     directly into the final executable.
+  = We can't put a blob of a memory into the binary for each of piece of text whose size is
+    unknown at compile time and whose size of might change while running the program.
+
+= With the String type, in order to support a mutable, growable piece of text, we need to allocate
+  amount of memory on the heap, unknown at compile time, to hold the contents:
+  =1 The memory must be requested from the operating system
+  =2 We need a way of returning this memory to OS when we're done with out String.
+
+= The first part is done by us: when we call String::from, its implementation requests the memory it needs.
+= The second part, Rust automatically returned the memory once the variable that owns it goes out of scope.
+
+      {
+          let s = String::from("hello");        // s is valid from this point forward.
+          
+          // do stuf with s
+
+      }                                         // this scope is now over and s is no longer valid.
+
+= When a variable goes out of scope, Rust calls special function called `drop` to return the memory to the OS.
+= Rust calls `drop` automatically at the closing curly bracket.
+
+.------.
+| MOVE |
+|------|
+
+      let x = 5;
+      let y = x;
+
+= We can probably guess what this is doing: 
+    "bind the value 5 to x; then make a copy of the value in x and bind it to y"
+  = This happening because integers are simple values with a known, fixed size and these two 5 values
+    are pushed onto the stack.
+
+      let s1 = String::from("hello");
+      let s2 = s1;
+
+= s2 is not copying the value of s1:
+  = String is made up of three parts
+    = a pointer to the memory that holds the contents of the string
+    = a length
+    = a capacity
+  = This group of data stored on the stack
+
+              STACK                       HEAP
+        .----------.-------.        .-------.-------.
+        |   name   | value |        | index | value |
+        |----------|-------|        |-------|-------|
+        |   ptr    |  []----------> |   0   |   h   |
+        |----------|-------|        |-------|-------|
+        |   len    |   5   |        |   1   |   e   |
+        |----------|-------|        |-------|-------|
+        | capacity |   5   |        |   2   |   l   |
+        |----------.-------|        |-------|-------|
+                                    |   3   |   l   |
+                                    |-------|-------|
+                                    |   4   |   o   |
+                                    |-------.-------|
+
+= The value holds the pointer to heap memory address.
+= The length is how much memory, in bytes, the contents of the String is currently using.
+= The capacity is the total amount of memory, in bytes, that the string has Received from the OS.
+= When we assign s1 to s2, the String data is copied, meaning we copy the pointer, the length and the
+  capacity that are on the stack
+  = We dont' copy the data on the heap that pointer refers to.
+
+
+            S1 on STACK                    HEAP
+        .----------.-------.         .-------.-------.
+        |   name   | value |         | index | value |
+        |----------|-------|         |-------|-------|
+        |   ptr    |  []-------.---> |   0   |   h   |
+        |----------|-------|   |     |-------|-------|
+        |   len    |   5   |   |     |   1   |   e   |
+        |----------|-------|   |     |-------|-------|
+        | capacity |   5   |   |     |   2   |   l   |
+        |----------.-------|   |     |-------|-------|
+                               |     |   3   |   l   |
+                               |     |-------|-------|
+                               |     |   4   |   o   |
+           S2 on STACK         |     |-------.-------|     
+        .----------.-------.   |
+        |   name   | value |   |
+        |----------|-------|   |
+        |   ptr    |  []-------| 
+        |----------|-------|
+        |   len    |   5   |  
+        |----------|-------|
+        | capacity |   5   |
+        |----------.-------|
+
+= s1 and s2 will be point to the same heap(memory) location, which problem when either s1 or s2 is goes 
+  out of scope.
+  = To avoid this, Rust move the pointer from s1 to s2. make the s1 invalidated. After this you cant access
+    the s1 anymore.
+= The Rust designed: the Rust will never automatically create "deep" copies of your data. Therefore, any
+  automatic copying can be assume to be expensive in terms of runtime performance.
+
+.-------.
+| CLONE |
+|-------|
+
+= If we do want to deeply copy the heap of the String, not just the stack data, we can use a common method
+  called clone.
+
+        let s1 = String::from("hello");
+        let s2 = s1.clone();
+
+        println!("s1 = {}, s2 = {}", s1, s2);
+
+= Both s1 and s2 be like:
+
+              s1's STACK                  HEAP
+        .----------.-------.        .-------.-------.
+        |   name   | value |        | index | value |
+        |----------|-------|        |-------|-------|
+        |   ptr    |  []----------> |   0   |   h   |
+        |----------|-------|        |-------|-------|
+        |   len    |   5   |        |   1   |   e   |
+        |----------|-------|        |-------|-------|
+        | capacity |   5   |        |   2   |   l   |
+        |----------.-------|        |-------|-------|
+                                    |   3   |   l   |
+                                    |-------|-------|
+                                    |   4   |   o   |
+                                    |-------.-------|
+
+              s2's STACK                  HEAP
+        .----------.-------.        .-------.-------.
+        |   name   | value |        | index | value |
+        |----------|-------|        |-------|-------|
+        |   ptr    |  []----------> |   0   |   h   |
+        |----------|-------|        |-------|-------|
+        |   len    |   5   |        |   1   |   e   |
+        |----------|-------|        |-------|-------|
+        | capacity |   5   |        |   2   |   l   |
+        |----------.-------|        |-------|-------|
+                                    |   3   |   l   |
+                                    |-------|-------|
+                                    |   4   |   o   |
+                                    |-------.-------|
+
+.------.
+| COPY |
+|------|
+
+      let x = 5;
+      let y = x;
+
+= Why x doesn't move to the y like the String type?
+  = Integers have known size at compile time and store entirely on the stack, so copies of
+    the actual values are quick to make.
+    = That means there's no reason we would want to prevent x from being valid after we create
+      the variable y.
+
+= Rust has a special annotation called the `Copy` trait.
+  = If a type has `Copy` trait, an older variable is still usable after assignment.
+= Rust won't let us annotate a type with the Copy trait if the type or any of its parts, has 
+  implemented the `Drop` trait.
+= What types are `Copy`?
+  = All the integer types, such as u32
+  = The Boolean type, bool
+  = The character type, char.
+  = All the floating point types, such f64.
+  = Tuples, if they only contain types that are also Copy.
+    = For example, (i32,i32) is `Copy`, but(i32, String) is not.
+
+= Nothing that requires allocation or is some form of rosource is `Copy`. 
+
+= Passing a variable to a function will move/copy just assignment does.

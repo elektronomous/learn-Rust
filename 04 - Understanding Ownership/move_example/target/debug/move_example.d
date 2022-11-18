@@ -1,0 +1,1 @@
+/home/elektronomous/Projects/learn-Rust/04\ -\ Understanding\ Ownership/move_example/target/debug/move_example: /home/elektronomous/Projects/learn-Rust/04\ -\ Understanding\ Ownership/move_example/src/main.rs
