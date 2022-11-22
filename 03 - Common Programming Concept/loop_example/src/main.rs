@@ -1,4 +1,24 @@
 fn main() {
+
+    // tuple
+    let tup = (100, 20, 30, 40, 50);
+    let n = 0;
+    println!("{}", tup[0]);
+   
+
+    // array
+    let arr: [i32; 5] = [10,20,30,40,50];
+    let mut index = 0;
+
+    while index < 4 {
+        println!("{}", arr[{index += 1; index}]);
+    }
+
+    for element in arr.iter() {
+        println!("{}", element);
+    }
+
+    
     // using loop {} to loop
     let mut counter = 0;
     let result = loop { 

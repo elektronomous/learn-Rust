@@ -41,6 +41,7 @@ fn main() {
 
     // specified a tuple
     let tup: (u32, f64, bool) = (500, 22.5, true);
+
     // you can destructuring it
     let (_x, _y, _z) = tup;
     // also like this

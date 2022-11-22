@@ -1,8 +1,8 @@
 .-----------.
 | VARIABLES |
 |-----------|
-= When a value is immutable, once a value is bound to a name, you can't
-  change that value.
+= When a value is immutable, once a value is bound to a name, you can't modified
+  that value.
 
     let x = 5;          // x == 5: immutable x's value
 
@@ -223,7 +223,7 @@
       };
 
 = When using if condition expression like this make sure the both block of code which the true
-  block and the false block, return the same type
+  block and the false block, return the value that has the same data type.
 
       let myself = if am_i_handsome {
         "100%"
